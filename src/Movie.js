@@ -1,6 +1,42 @@
 import React, { useState } from "react";
+import styled from "styled-components";
 
-const Movie = () => {
+const FormStyle = styled.form`
+  text-align: center;
+`;
+
+const InputStyle = styled.input`
+  width: 60%;
+  height: 25px;
+  margin-top: 10px;
+`;
+
+const BtnSumbit = styled.button`
+  color: white;
+  border: 1px solid black;
+  width: 80px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  background-color: skyblue;
+`;
+
+const BtnReset = styled.button`
+  color: white;
+  border: 1px solid black;
+  width: 80px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 800;
+  background-color: skyblue;
+  margin: 10px;
+`;
+
+const Movie = (props) => {
   const [movie, setMovie] = useState({
     title: "",
     rating: "",
@@ -28,6 +64,7 @@ const Movie = () => {
       .then((res) => {
         if (res === "ok") {
           alert("등록성공!");
+          props.history.push("/");
         }
       });
   }
@@ -44,50 +81,48 @@ const Movie = () => {
   }
 
   return (
-    <div>
-      <form>
-        <h1>영화 등록페이지</h1>
-        제목 :{" "}
-        <input
-          type="text"
-          onChange={inputHandle}
-          value={movie.title}
-          name="title"
-          placeholder="제목입력"
-        />
-        <br />
-        평점 :{" "}
-        <input
-          type="text"
-          onChange={inputHandle}
-          value={movie.rating}
-          name="rating"
-          placeholder="평점입력"
-        />
-        <br />
-        줄거리 :{" "}
-        <input
-          type="text"
-          onChange={inputHandle}
-          value={movie.summary}
-          name="summary"
-          placeholder="줄거리입력"
-        />
-        <br />
-        사진 :{" "}
-        <input
-          type="text"
-          onChange={inputHandle}
-          value={movie.medium_cover_image}
-          name="medium_cover_image"
-          placeholder="이미지주소 입력"
-        />
-        <br />
-        <br />
-        <button onClick={submit}>등록</button>
-        <button onClick={reset}>리셋</button>
-      </form>
-    </div>
+    <FormStyle>
+      <h1>영화 등록페이지</h1>
+      제목{" "}
+      <InputStyle
+        type="text"
+        onChange={inputHandle}
+        value={movie.title}
+        name="title"
+        placeholder="제목입력"
+      />
+      <br />
+      평점{" "}
+      <InputStyle
+        type="text"
+        onChange={inputHandle}
+        value={movie.rating}
+        name="rating"
+        placeholder="평점입력"
+      />
+      <br />
+      내용{" "}
+      <InputStyle
+        type="text"
+        onChange={inputHandle}
+        value={movie.summary}
+        name="summary"
+        placeholder="줄거리입력"
+      />
+      <br />
+      사진{" "}
+      <InputStyle
+        type="text"
+        onChange={inputHandle}
+        value={movie.medium_cover_image}
+        name="medium_cover_image"
+        placeholder="이미지주소 입력"
+      />
+      <br />
+      <br />
+      <BtnSumbit onClick={submit}>등록</BtnSumbit>
+      <BtnReset onClick={reset}>리셋</BtnReset>
+    </FormStyle>
   );
 };
 

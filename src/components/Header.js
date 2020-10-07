@@ -20,7 +20,7 @@ const ListStyle = styled.li`
 const LinkStyle = styled(Link)`
   text-decoration: none;
   color: white;
-  font-size: 20px;
+  font-size: 15px;
   font-weight: 500;
 `;
 
